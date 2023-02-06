@@ -3,10 +3,13 @@ import { Note } from "../Models/Note.js";
 import { saveState } from "../Utils/Store.js";
 
 class NotesService {
+
+
     updateNote(body) {
         let activeNote = appState.activeNote
         activeNote.body = body
-        saveState('Notes', appState.Notes)
+        activeNote.dateEdited = activeNote.time
+        saveState('notes', appState.Notes)
         appState.emit('activeNote')
     }
 
@@ -22,16 +25,22 @@ class NotesService {
         });
         saveState('notes', appState.Notes)
         appState.emit('Notes')
-        console.log(appState.Notes)
+        // console.log(appState.Notes)
     }
 
     setActiveNote(noteId) {
         let foundNote = appState.Notes.find(note => note.id == noteId)
         appState.activeNote = foundNote
-        console.log(foundNote);
+        // console.log(foundNote);
+        appState.emit('activeNote')
     }
 
-
+    deleteNote(noteId) {
+        let index = appState.Notes.findIndex(i => i.id == noteId)
+        appState.Notes.splice(index, 1)
+        saveState('notes', appState.Notes)
+        appState.emit('Notes')
+    }
 
 }
 
