@@ -8,8 +8,9 @@ class NotesService {
     updateNote(body) {
         let activeNote = appState.activeNote
         let totalCharacters = 0
-        totalCharacters = body.chars().filter(ch => ch != ' ').count();
-        activeNote.Characters = totalCharacters
+        totalCharacters = body.length;
+        // console.log(totalCharacters);
+        activeNote.characters = totalCharacters
         activeNote.body = body
         activeNote.dateEdited = activeNote.time
         saveState('notes', appState.Notes)
