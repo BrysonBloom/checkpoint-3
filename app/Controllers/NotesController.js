@@ -1,7 +1,7 @@
 import { appState } from "../AppState.js";
 import { notesService } from "../Services/NotesService.js";
 import { getFormData } from "../Utils/FormHandler.js";
-import { setHTML } from "../Utils/Writer.js";
+import { setHTML, setText } from "../Utils/Writer.js";
 import { Pop } from "../Utils/Pop.js";
 
 
@@ -9,6 +9,7 @@ function _drawNotes() {
     let notes = appState.Notes
     let template = ``
     notes.forEach(note => template += note.notesTemplate);
+    setText('offcanvasLabel', `Notes: ${notes.length}`)
     setHTML('saved-notes', template)
 }
 

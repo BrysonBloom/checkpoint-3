@@ -8,6 +8,7 @@ export class Note {
     this.id = generateId()
     this.dateMade = data.dateMade
     this.dateEdited = data.dateEdited
+    this.characters = data.characters
   }
 
 
@@ -29,8 +30,9 @@ export class Note {
         <div class="row w-">
           <div class="col-4 p-3">
             <h2 class="text-shadow" style="color: ${this.color};">${this.name}</h2>
-            <h5 class="text-white-50">${this.dateMade}</h5>
-            <h5 class="text-white-50">${this.dateEdited}</h5>
+            <h5 class="text-white-50">Created on: ${this.dateMade}</h5>
+            <h5 class="text-white-50">Last edited on: ${this.dateEdited}</h5>
+            <h5 class="text-white-50">Characters used: ${this.characters}</h5>
           </div>
           <div class="col-6 pb-5">
             <textarea class="" style="height: 85.45vh; width: 40vw" name="body" id="body" onblur="app.notesController.updateNote()">${this.body}</textarea>
